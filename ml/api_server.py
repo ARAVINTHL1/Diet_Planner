@@ -1,6 +1,52 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import joblib
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For issues, check [Render Docs](https://render.com/docs)## Support- 750 hours/month free compute- Services spin down after inactivity (cold start ~30 seconds)## Free Tier Limitations- `DEBUG`: Set to `False` for production- `PORT`: Auto-set by Render## Environment Variables (Optional)Use the included `render.yaml` file for automated deployment of both services.## Alternative: One-Click Deploy with render.yamlAfter backend is deployed, update your frontend code to use the Render API URL instead of `localhost:5000`.### 3. Update Frontend API URL5. Click **Create Static Site**   - Destination: `/index.html`   - Source: `/*`4. Add **Rewrite Rule**:   - **Plan**: Free   - **Publish Directory**: `dist`   - **Build Command**: `echo "Using pre-built dist"`   - **Name**: `swasthya-ai-frontend`3. Configure:2. Connect the same GitHub repository1. In Render Dashboard, click **New +** → **Static Site**### 2. Deploy Frontend7. Copy your API URL (e.g., `https://swasthya-ai-api.onrender.com`)6. Wait for deployment (5-10 minutes)5. Click **Create Web Service**   - **Plan**: Free   - **Start Command**: `cd ml && gunicorn --bind 0.0.0.0:$PORT api_server:app`   - **Build Command**: `pip install -r ml/requirements_api.txt`   - **Runtime**: Python 3   - **Name**: `swasthya-ai-api`4. Configure:3. Connect your GitHub repository: `ARAVINTHL1/Diet_Planner`2. Click **New +** → **Web Service**1. Go to [Render Dashboard](https://dashboard.render.com/)### 1. Deploy API Backend## Quick Deploy Guideimport joblib
 import numpy as np
 import os
 
@@ -167,13 +213,15 @@ def analyze_meal():
         }), 400
 
 if __name__ == '__main__':
+    import os
+    port = int(os.environ.get('PORT', 5000))
     print("=" * 60)
     print("🚀 Swasthya AI ML API Server")
     print("=" * 60)
-    print("Server running on: http://localhost:5000")
+    print(f"Server running on port: {port}")
     print("Endpoints:")
     print("  GET  /api/health        - Health check")
     print("  POST /api/predict       - Predict single food")
     print("  POST /api/analyze-meal  - Analyze complete meal")
     print("=" * 60)
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=port, debug=os.environ.get('DEBUG', 'False') == 'True')
