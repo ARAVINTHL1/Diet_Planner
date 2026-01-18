@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swasthya AI - ML API Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .status.online {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.offline {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result.healthy {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+        }
+
+        .result.moderate {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .result.unhealthy {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+        }
+
+        .result-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .result-score {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .result-recommendation {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .confidence {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .confidence-item {
+            flex: 1;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .confidence-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .confidence-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧠 Swasthya AI - ML Test</h1>
+        <p class="subtitle">Test the Machine Learning API</p>
+
+        <div id="status" class="status offline">
+            ⏳ Checking API status...
+        </div>
+
+        <div class="form-group">
+            <label for="calories">Calories (per 100g)</label>
+            <input type="number" id="calories" value="370" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label for="protein">Protein (g per 100g)</label>
+            <input type="number" id="protein" value="7.9" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label for="carbs">Carbohydrates (g per 100g)</label>
+            <input type="number" id="carbs" value="77.2" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label for="fat">Fat (g per 100g)</label>
+            <input type="number" id="fat" value="2.9" step="0.1">
+        </div>
+
+        <div class="form-group">
+            <label for="fiber">Fiber (g per 100g)</label>
+            <input type="number" id="fiber" value="3.5" step="0.1">
+        </div>
+
+        <button onclick="predictFood()">🔍 Analyze Food</button>
+
+        <div id="result" class="result">
+            <div class="result-header" id="resultHeader"></div>
+            <div class="result-score" id="resultScore"></div>
+            <div class="result-recommendation" id="resultRecommendation"></div>
+            <div class="confidence">
+                <div class="confidence-item">
+                    <div class="confidence-label">Healthy</div>
+                    <div class="confidence-value" id="confHealthy">-</div>
+                </div>
+                <div class="confidence-item">
+                    <div class="confidence-label">Moderate</div>
+                    <div class="confidence-value" id="confModerate">-</div>
+                </div>
+                <div class="confidence-item">
+                    <div class="confidence-label">Unhealthy</div>
+                    <div class="confidence-value" id="confUnhealthy">-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        // Check API health on load
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+
+                const statusEl = document.getElementById('status');
+                if (data.status === 'healthy') {
+                    statusEl.className = 'status online';
+                    statusEl.textContent = '✓ ML API is running on http://localhost:5000';
+                } else {
+                    statusEl.className = 'status offline';
+                    statusEl.textContent = '✗ ML API is offline';
+                }
+            } catch (error) {
+                const statusEl = document.getElementById('status');
+                statusEl.className = 'status offline';
+                statusEl.textContent = '✗ Cannot connect to ML API';
+            }
+        }
+
+        // Predict food health
+        async function predictFood() {
+            const data = {
+                calories: parseFloat(document.getElementById('calories').value),
+                protein: parseFloat(document.getElementById('protein').value),
+                carbs: parseFloat(document.getElementById('carbs').value),
+                fat: parseFloat(document.getElementById('fat').value),
+                fiber: parseFloat(document.getElementById('fiber').value),
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    displayResult(result);
+                } else {
+                    alert('Error: ' + result.error);
+                }
+            } catch (error) {
+                alert('Failed to connect to ML API: ' + error.message);
+            }
+        }
+
+        // Display result
+        function displayResult(result) {
+            const resultEl = document.getElementById('result');
+            const prediction = result.prediction.toLowerCase();
+
+            resultEl.className = `result show ${prediction}`;
+
+            document.getElementById('resultHeader').textContent =
+                `${result.emoji} ${result.prediction}`;
+            document.getElementById('resultScore').textContent =
+                `Health Score: ${result.health_score}/100`;
+            document.getElementById('resultRecommendation').textContent =
+                result.recommendation;
+
+            document.getElementById('confHealthy').textContent =
+                `${result.confidence.healthy}%`;
+            document.getElementById('confModerate').textContent =
+                `${result.confidence.moderate}%`;
+            document.getElementById('confUnhealthy').textContent =
+                `${result.confidence.unhealthy}%`;
+        }
+
+        // Check health on load
+        checkHealth();
+    </script>
+</body>
+
+</html>

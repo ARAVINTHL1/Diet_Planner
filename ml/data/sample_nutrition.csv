@@ -1,0 +1,51 @@
+food_name,category,calories,protein,carbs,fat,fiber,iron,vitamin_c,healthy_label
+Brown Rice,Grains,370,7.9,77.2,2.9,3.5,1.47,0,Healthy
+White Rice,Grains,365,7.1,79.9,0.7,1.3,0.8,0,Moderate
+Chicken Breast,Poultry,165,31,0,3.6,0,0.9,0,Healthy
+Salmon,Fish,208,20,0,13,0,0.8,0,Healthy
+Broccoli,Vegetables,34,2.8,7,0.4,2.6,0.73,89.2,Healthy
+Spinach,Vegetables,23,2.9,3.6,0.4,2.2,2.71,28.1,Healthy
+Apple,Fruits,52,0.3,14,0.2,2.4,0.12,4.6,Healthy
+Banana,Fruits,89,1.1,23,0.3,2.6,0.26,8.7,Healthy
+Almonds,Nuts,579,21.2,21.6,49.9,12.5,3.71,0,Healthy
+Walnuts,Nuts,654,15.2,13.7,65.2,6.7,2.91,1.3,Healthy
+Milk,Dairy,61,3.2,4.8,3.3,0,0.03,0,Moderate
+Yogurt,Dairy,59,3.5,4.7,3.3,0,0.05,0.5,Healthy
+Whole Wheat Bread,Grains,247,13,41,3.4,6.8,2.71,0,Healthy
+White Bread,Grains,265,9,49,3.2,2.7,3.64,0,Moderate
+Potato,Vegetables,77,2,17,0.1,2.1,0.81,19.7,Moderate
+Sweet Potato,Vegetables,86,1.6,20,0.1,3,0.61,2.4,Healthy
+Lentils,Legumes,116,9,20,0.4,7.9,3.3,1.5,Healthy
+Chickpeas,Legumes,164,8.9,27.4,2.6,7.6,2.89,1.3,Healthy
+Eggs,Poultry,155,13,1.1,11,0,1.75,0,Healthy
+Cheese,Dairy,402,25,1.3,33,0,0.68,0,Moderate
+Tomato,Vegetables,18,0.9,3.9,0.2,1.2,0.27,13.7,Healthy
+Carrot,Vegetables,41,0.9,10,0.2,2.8,0.3,5.9,Healthy
+Orange,Fruits,47,0.9,12,0.1,2.4,0.1,53.2,Healthy
+Grapes,Fruits,69,0.7,18,0.2,0.9,0.36,3.2,Moderate
+Oats,Grains,389,16.9,66.3,6.9,10.6,4.72,0,Healthy
+Quinoa,Grains,368,14.1,64.2,6.1,7,4.57,0,Healthy
+Tofu,Soy,76,8,1.9,4.8,0.3,5.4,0.1,Healthy
+Paneer,Dairy,265,18.3,1.2,20.8,0,0.2,0,Moderate
+Ghee,Dairy,900,0,0,100,0,0,0,Unhealthy
+Butter,Dairy,717,0.9,0.1,81,0,0.02,0,Unhealthy
+Pizza,Fast Food,266,11,33,10,2.5,1.5,2,Unhealthy
+Burger,Fast Food,295,17,28,12,2.1,2.8,1.2,Unhealthy
+French Fries,Fast Food,312,3.4,41,15,3.8,0.7,9.7,Unhealthy
+Ice Cream,Dessert,207,3.5,24,11,0.7,0.09,0.6,Unhealthy
+Chocolate,Dessert,546,4.9,61,31,7,2.3,0,Unhealthy
+Soda,Beverages,41,0,11,0,0,0.04,0,Unhealthy
+Coffee,Beverages,1,0.1,0,0,0,0.01,0,Healthy
+Green Tea,Beverages,1,0,0,0,0,0.02,0,Healthy
+Honey,Sweetener,304,0.3,82,0,0.2,0.42,0.5,Moderate
+Sugar,Sweetener,387,0,100,0,0,0.05,0,Unhealthy
+Olive Oil,Oils,884,0,0,100,0,0.56,0,Healthy
+Coconut Oil,Oils,862,0,0,100,0,0.04,0,Moderate
+Peanut Butter,Nuts,588,25,20,50,6,1.9,0,Moderate
+Avocado,Fruits,160,2,8.5,14.7,6.7,0.55,10,Healthy
+Cucumber,Vegetables,15,0.7,3.6,0.1,0.5,0.28,2.8,Healthy
+Cauliflower,Vegetables,25,1.9,5,0.3,2,0.42,48.2,Healthy
+Cabbage,Vegetables,25,1.3,5.8,0.1,2.5,0.47,36.6,Healthy
+Mushroom,Vegetables,22,3.1,3.3,0.3,1,0.5,2.1,Healthy
+Pumpkin,Vegetables,26,1,6.5,0.1,0.5,0.8,9,Healthy
+Beetroot,Vegetables,43,1.6,10,0.2,2.8,0.8,4.9,Healthy
